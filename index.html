@@ -2118,14 +2118,14 @@ video {
         const body = document.body;
         const links = document.querySelectorAll('.sidebar-link');
     
-        const sections = {
-          hero: document.querySelector('#hero'),
-          about: document.querySelector('#about'),
-          skills: document.querySelector('#videography'),
-          portfolio: document.querySelector('#leslie-in-tech'),
-          contact: document.querySelector('#contact')
+         const sections = {
+          hero: document.querySelector('#hero'),               // Reference for the "Hero" section
+          about: document.querySelector('#about'),             // Reference for the "About" section
+          videography: document.querySelector('#videography'), // Reference for the "Videography" section
+          leslieInTech: document.querySelector('#leslie-in-tech'), // Reference for the "Leslie in Tech" section
+          contact: document.querySelector('#contact')          // Reference for the "Contact" section
         };
-    
+        
         // Percentage-based threshold for earlier transition
         const heroHeight = heroSection.offsetHeight;
         const threshold = heroHeight * 0.2;
