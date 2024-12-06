@@ -2072,30 +2072,142 @@ video {
             </div>
           </div>
                       <!-- Festive Icon -->
-  <div class="festive-icon">
-    <i class="bi bi-stars"></i> <!-- Festive Bootstrap Icon -->
+ <div class="festive-icon">
+    <!-- <i class="bi bi-stars"></i> Festive Bootstrap Icon -->
   </div>
         </section>
         
-        
-
-
-
       </div>
     </div>
-    <!-- Right Side: Static Image -->
-    <div style = "margin-top:100px; width: 300px;" class="tech-image">
-      <img src="https://raw.githubusercontent.com/Lesliekonlack/LeslieKonlackPortfolio/refs/heads/main/LeslieInTech.webp" alt="Leslie in Tech" />
-    </div>    
+   <!-- Container to Stack Images Vertically -->
+<div style="margin-top: 100px; text-align: center;">
+<!-- First Image (Flipped) -->
+<div style="margin-bottom: 20px;">
+  <img src="https://raw.githubusercontent.com/Lesliekonlack/LeslieKonlackPortfolio/refs/heads/main/LeslieInTech.webp" 
+       alt="Leslie in Tech" 
+       style="width: 390px; transform: scaleX(-1);" />
+</div>
+<div style="
+    position: relative;
+    width: 390px;
+    margin: 50px auto;
+    margin-top: 500px;
+    text-align: center;
+    animation: rotateCard 5s infinite; /* Rotating card animation */
+">
+  <!-- "Clip" at the Top -->
+  <div style="
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 20px;
+      background: #888;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    "></div>
+
+  <!-- Top Hanger Line -->
+  <div style="
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 30px;
+      background: #ccc;
+    "></div>
+
+  <!-- Main Card -->
+  <div style="
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+      border-radius: 15px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      z-index: 1;
+      animation: bounce 3s infinite ease-in-out;
+    ">
+    <!-- Alternating Images -->
+    <img id="imageSwitch" 
+         src="LeslieAward2.png" 
+         alt="Celebrating Leslie" 
+         style="width: 100%; display: block; border-radius: 0; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" />
+    
+    <!-- Caption -->
+    <div style="padding: 15px; font-size: 18px; font-weight: bold; color: #333; text-align: center; font-family: Arial, sans-serif;">
+      Congratulations, Leslie!
+    </div>
+  </div>
+</div>
+
+<!-- Falling Confetti -->
+<div id="confetti-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;"></div>
+
+<!-- Styles -->
+<style>
+  /* Confetti falling animation */
+  @keyframes fall {
+    0% { transform: translateY(-10%) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Card rotation animation */
+  @keyframes rotateCard {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+  }
+
+  /* Bouncing animation for the card */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+</style>
+
+<!-- Script -->
+<script>
+  // Image alternation between LeslieAward2.png and LeslieAward.png
+  const images = ["LeslieAward2.png", "LeslieAward.png"];
+  let currentIndex = 0;
+  const imageElement = document.getElementById("imageSwitch");
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    imageElement.src = images[currentIndex];
+  }, 2000); // Switch every 2 seconds
+
+  // Falling confetti logic
+  const confettiColors = ["#FF5733", "#FFC300", "#DAF7A6", "#FFC0CB", "#00BFFF", "#800080"];
+  const confettiContainer = document.getElementById("confetti-container");
+
+  function createConfettiPiece() {
+    const confetti = document.createElement("div");
+    confetti.style.position = "absolute";
+    confetti.style.width = Math.random() * 10 + "px";
+    confetti.style.height = confetti.style.width;
+    confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+    confetti.style.borderRadius = "50%";
+    confetti.style.top = "900px";
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+    confettiContainer.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 5000); // Remove confetti after 5 seconds
+  }
+
+  function launchConfetti() {
+    setInterval(createConfettiPiece, 200); // Create confetti every 200ms
+  }
+
+  // Launch confetti when page loads
+  window.onload = launchConfetti;
+</script>
   </div>
 </section>
 
-
-
-
-
-
-    
   
     <!-- Skills Section
     <section class="skills" id="skills">
